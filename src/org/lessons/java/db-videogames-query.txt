@@ -184,7 +184,13 @@ JOIN
 
 9- Selezionare i giocatori che hanno giocato al gioco più atteso del 2018 in un torneo del 2019 (3306)
 
--
+- select * from players p
+  join player_tournament pt on pt.player_id = p.id
+  join tournaments t on t.id = pt.tournament_id
+  join tournament_videogame tv on tv.tournament_id = t.id
+  join videogames v on v.id = tv.videogame_id
+  join award_videogame av on av.videogame_id = v.id
+  join awards a on a.id = av.award_id where t.year = 2019 and a.id = 5 and year(v.release_date) = 2019
 
 
 *********** BONUS ***********
